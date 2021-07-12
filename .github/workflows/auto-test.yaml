@@ -1,0 +1,44 @@
+name: django unit test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: ikki
+          POSTGRES_PASSWORD: sampledb123
+          POSTGRES_DB: sampledb
+        ports:
+        - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r server/packages.txt
+    - name: Django settings
+      run: |
+        sudo sh -c "echo 'from .base import *' > server/src/project/settings/local.py"
+        sudo sh -c "echo 'ALLOWED_HOSTS = ['*']' >> server/src/project/settings/local.py"
+        sudo sh -c "echo 'DATABASES = {' >> server/src/project/settings/local.py"
+        sudo sh -c "echo '    'default': {' >> server/src/project/settings/local.py"
+        sudo sh -c "echo '        'ENGINE': 'django.db.backends.postgresql_psycopg2',' >> server/src/project/settings/local.py"
+        sudo sh -c "echo '        'NAME': 'sampledb',' >> server/src/project/settings/local.py"
+        sudo sh -c "echo '        'USER': 'ikki',' >> server/src/project/settings/local.py"
+        sudo sh -c "echo '        'PASSWORD': 'sampledb123',' >> server/src/project/settings/local.py"
+        sudo sh -c "echo '        'HOST': '127.0.0.1',' >> server/src/project/settings/local.py"
+        sudo sh -c "echo '    }' >> server/src/project/settings/local.py"
+        sudo sh -c "echo '}' >> server/src/project/settings/local.py"
+    - name: Django app url shortner test
+      run: python src/manage.py test
