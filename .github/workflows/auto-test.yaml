@@ -41,4 +41,4 @@ jobs:
         sudo sh -c "echo '    }' >> server/src/project/settings/local.py"
         sudo sh -c "echo '}' >> server/src/project/settings/local.py"
     - name: Django app url shortner test
-      run: python src/manage.py test
+      run: python server/src/manage.py test
