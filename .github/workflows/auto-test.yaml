@@ -40,5 +40,5 @@ jobs:
         sudo sh -c "echo '        '\''HOST'\'': '\''127.0.0.1'\'',' >> server/src/project/settings/local.py"
         sudo sh -c "echo '    }' >> server/src/project/settings/local.py"
         sudo sh -c "echo '}' >> server/src/project/settings/local.py"
-    - name: Django app url shortner test
+    - name: Django test
       run: python server/src/manage.py test
