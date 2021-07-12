@@ -1,1 +1,1 @@
-# blog.ikkitang1211
+# sample-github-action
