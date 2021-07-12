@@ -1,13 +1,13 @@
 version: "3"
 services:
-  postgres:
+  postgres-db:
     image: postgres:12
     environment:
-      POSTGRES_DB: sample_db
+      POSTGRES_DB: sampledb
       POSTGRES_USER: ikki
-      POSTGRES_PASSWORD: sample_db_123
+      POSTGRES_PASSWORD: sampledb123
     ports:
-      - "5433:5432"
+      - "5432:5432"
     networks:
       - sample-dev
     volumes:
@@ -22,8 +22,10 @@ services:
       - ./server:/opt/apps/server
     environment:
       TZ: "Asia/Tokyo"
+    networks:
+      - sample-dev
     depends_on:
-      - postgres
+      - postgres-db
     command: [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
     container_name: sample-server
 
