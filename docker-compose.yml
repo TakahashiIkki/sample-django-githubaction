@@ -24,7 +24,7 @@ services:
       TZ: "Asia/Tokyo"
     depends_on:
       - postgres
-    command: [ "python", "src/manage.py", "runserver", "0.0.0.0:8000" ]
+    command: [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
     container_name: sample-server
 
 volumes:
