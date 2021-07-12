@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from django.db import models
 
 
@@ -8,4 +9,6 @@ class Blog(models.Model):
 
     class Meta:
         db_table = 'blog'
-        verbose_name = verbose_name_plural = 'ブログ'
+
+    class JSONAPIMeta:
+        resource_name = 'blog'

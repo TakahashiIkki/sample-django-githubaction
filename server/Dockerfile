@@ -8,6 +8,6 @@ RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
 
 # 必要なパッケージのインストール
-COPY ./requirements.txt ./
+COPY ./packages.txt ./
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r ./requirements.txt
+RUN pip install --no-cache-dir -r ./packages.txt
