@@ -30,7 +30,7 @@ jobs:
     - name: Django settings
       run: |
         sudo sh -c "echo 'from .base import *' > server/src/project/settings/local.py"
-        sudo sh -c "echo 'ALLOWED_HOSTS = ['*']' >> server/src/project/settings/local.py"
+        sudo sh -c "echo 'ALLOWED_HOSTS = [\'*\']' >> server/src/project/settings/local.py"
         sudo sh -c "echo 'DATABASES = {' >> server/src/project/settings/local.py"
         sudo sh -c "echo '    'default': {' >> server/src/project/settings/local.py"
         sudo sh -c "echo '        'ENGINE': 'django.db.backends.postgresql_psycopg2',' >> server/src/project/settings/local.py"
