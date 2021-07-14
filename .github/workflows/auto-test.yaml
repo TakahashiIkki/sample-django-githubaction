@@ -29,16 +29,16 @@ jobs:
         pip install -r server/packages.txt
     - name: Django settings
       run: |
-        sudo sh -c "echo 'from .base import *' > server/src/project/settings/local.py"
-        sudo sh -c "echo 'ALLOWED_HOSTS = ['\''*'\'']' >> server/src/project/settings/local.py"
-        sudo sh -c "echo 'DATABASES = {' >> server/src/project/settings/local.py"
-        sudo sh -c "echo '    '\''default'\'': {' >> server/src/project/settings/local.py"
-        sudo sh -c "echo '        '\''ENGINE'\'': '\''django.db.backends.postgresql_psycopg2'\'',' >> server/src/project/settings/local.py"
-        sudo sh -c "echo '        '\''NAME'\'': '\''sampledb'\'',' >> server/src/project/settings/local.py"
-        sudo sh -c "echo '        '\''USER'\'': '\''ikki'\'',' >> server/src/project/settings/local.py"
-        sudo sh -c "echo '        '\''PASSWORD'\'': '\''sampledb123'\'',' >> server/src/project/settings/local.py"
-        sudo sh -c "echo '        '\''HOST'\'': '\''127.0.0.1'\'',' >> server/src/project/settings/local.py"
-        sudo sh -c "echo '    }' >> server/src/project/settings/local.py"
-        sudo sh -c "echo '}' >> server/src/project/settings/local.py"
+        sh -c "echo 'from .base import *' > server/src/project/settings/local.py"
+        sh -c "echo 'ALLOWED_HOSTS = ['\''*'\'']' >> server/src/project/settings/local.py"
+        sh -c "echo 'DATABASES = {' >> server/src/project/settings/local.py"
+        sh -c "echo '    '\''default'\'': {' >> server/src/project/settings/local.py"
+        sh -c "echo '        '\''ENGINE'\'': '\''django.db.backends.postgresql_psycopg2'\'',' >> server/src/project/settings/local.py"
+        sh -c "echo '        '\''NAME'\'': '\''sampledb'\'',' >> server/src/project/settings/local.py"
+        sh -c "echo '        '\''USER'\'': '\''ikki'\'',' >> server/src/project/settings/local.py"
+        sh -c "echo '        '\''PASSWORD'\'': '\''sampledb123'\'',' >> server/src/project/settings/local.py"
+        sh -c "echo '        '\''HOST'\'': '\''127.0.0.1'\'',' >> server/src/project/settings/local.py"
+        sh -c "echo '    }' >> server/src/project/settings/local.py"
+        sh -c "echo '}' >> server/src/project/settings/local.py"
     - name: Django test
       run: python server/src/manage.py test
