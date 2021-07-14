@@ -3,6 +3,7 @@ name: django unit test
 on:
   workflow_dispatch:
     branches:
+      - feature/sample_a
       - master
     inputs:
       agreement:
