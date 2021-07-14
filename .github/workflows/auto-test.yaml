@@ -1,14 +1,7 @@
 name: django unit test
 
-on:
-  workflow_dispatch:
-    branches:
-      - feature/sample_a
-      - master
-    inputs:
-      agreement:
-        description: 'check?'
-        required: true
+on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
